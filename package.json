@@ -1,6 +1,6 @@
 {
   "name": "@ahhaohho/auth",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "AhhaOhho API 요청에 대한 인증/인가 패키지",
   "main": "index.js",
   "scripts": {
