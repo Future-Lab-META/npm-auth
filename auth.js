@@ -52,15 +52,20 @@ async function authenticate(req, res, next) {
     });
 }
 
-async function authorize(req) {
+async function authorize(req, res, next) {
     const { userId, userRole } = req;
 
-    const { data } = await axios.get(`https://api.dev.ahhaohho.com/member/searchForServers?userId=${userId}`);
+    try {
+        const { data } = await axios.get(`https://api.dev.ahhaohho.com/member/searchForServers?userId=${userId}`);
 
-    if (data.role === userRole) {
-        next();
-    } else {
-        return res.status(403).json({ type: 'client', message: " Access Denied: You do not have the necessary permissions" });
+        if (data.role === userRole) {
+            next();
+        } else {
+            res.status(403).json({ type: 'client', message: "Access Denied: You do not have the necessary permissions" });
+        }
+    } catch (error) {
+        console.error('Error during authorization:', error.message);
+        res.status(500).json({ type: 'system', message: "Internal server error" });
     }
 }
 
