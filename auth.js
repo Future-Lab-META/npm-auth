@@ -52,8 +52,6 @@ async function authenticate(req, res, next) {
     });
 }
 
-const axios = require('axios');
-
 async function authorize(req) {
     const { userId, userRole } = req;
 
