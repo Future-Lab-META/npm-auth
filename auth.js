@@ -1,5 +1,5 @@
-const verifyApiKey = require('./verifyApiKey'); // API키 검증로직
-const verifyToken = require('./verifyToken'); // 토큰 검증로직
+const verifyApiKey = require('./utils/verifyApiKey'); // API키 검증로직
+const verifyToken = require('./utils/verifyToken'); // 토큰 검증로직
 const axios = require('axios');
 
 async function apiKeyAuthenticator(req, res, next) {
