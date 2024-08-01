@@ -1,0 +1,25 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "AhhaOhho API 요청에 대한 인증/인가 패키지",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"test\": \"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Future-Lab-META/npm-auth.git"
+  },
+  "keywords": [
+    "auth"
+  ],
+  "author": "doooosoooo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Future-Lab-META/npm-auth/issues"
+  },
+  "homepage": "https://github.com/Future-Lab-META/npm-auth#readme",
+  "dependencies": {
+    "axios": "^1.7.2"
+  }
+}
