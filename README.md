@@ -14,6 +14,13 @@ npm install @ahhaohho/auth
 const { authorize, authenticate } = require('@ahhaohho/auth')
 ~~~
 
+사용예시
+~~~
+const { authorize, authenticate } = require('@ahhaohho/auth')
+
+app.get('/challenge/authTest', authenticate, authorize, (req, res) => { res.send('ok') });
+~~~
+
 3. 요청헤더
 - API키 : ```x-api-key, device-id```
 - Bearer Token : ```authorization```
