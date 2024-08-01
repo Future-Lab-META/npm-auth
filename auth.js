@@ -55,19 +55,23 @@ async function authenticate(req, res, next) {
 async function authorize(req, res, next) {
     const { userId, userRole } = req;
 
-    try {
-        const { data } = await axios.get(`https://api.dev.ahhaohho.com/member/searchForServers?userId=${userId}`);
 
-        if (data.role === userRole) {
-            next();
-        } else {
-            res.status(403).json({ type: 'client', message: "Access Denied: You do not have the necessary permissions" });
+    if (req.headers['authorization']) {
+        try {
+            const { data } = await axios.get(`https://api.dev.ahhaohho.com/member/searchForServers?userId=${userId}`);
+
+            if (data.role === userRole) {
+                next();
+            } else {
+                res.status(403).json({ type: 'client', message: "Access Denied: You do not have the necessary permissions" });
+            }
+        } catch (error) {
+            console.error('Error during authorization:', error.message);
+            res.status(500).json({ type: 'system', message: "Internal server error" });
         }
-    } catch (error) {
-        console.error('Error during authorization:', error.message);
-        res.status(500).json({ type: 'system', message: "Internal server error" });
+    }else{
+        next();
     }
 }
 
-
-module.exports = { authorize, authenticate };
+    module.exports = { authorize, authenticate };
