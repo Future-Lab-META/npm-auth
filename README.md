@@ -1,6 +1,6 @@
 # ahhaohho 인증/인가 모듈
 
-API 키 또는 Bearer 토큰 인증과 Role & Permission 기반 인가 기능을 제공하는 Node.js 모듈입니다.
+AhhaOhho 서비스를 위한 API 키 또는 Bearer 토큰의 인증과 Role & Permission 기반 인가 기능을 제공하는 AhhaOhho 전용모듈입니다.
 
 ## 설치
 
