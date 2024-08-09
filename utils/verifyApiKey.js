@@ -1,13 +1,13 @@
 const axios = require('axios');
 
-async function verifyApiKey(req) {
+async function verifyApiKey(req, authUrl) {
     try {
         const xApiKey = req.headers['x-api-key'];
         const deviceId = req.headers['device-id'];
 
         console.log('#2: ', xApiKey, deviceId);
 
-        const response = await axios.get('https://api.dev.ahhaohho.com/auth/verifyApiKey', {
+        const response = await axios.get(authUrl + 'auth/verifyApiKey', {
             headers: {
                 'x-api-key': xApiKey,
                 'device-id': deviceId,

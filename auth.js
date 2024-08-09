@@ -2,10 +2,10 @@ const verifyApiKey = require('./utils/verifyApiKey'); // API키 검증로직
 const verifyToken = require('./utils/verifyToken'); // 토큰 검증로직
 const axios = require('axios');
 
-async function apiKeyAuthenticator(req, res, next) {
+async function apiKeyAuthenticator(req, res, authUrl, next) {
     if (req.headers['x-api-key']) {
         try {
-            const verifiedKey = await verifyApiKey(req);
+            const verifiedKey = await verifyApiKey(req, authUrl);
 
             if (verifiedKey.type === 'success') {
                 req.skipAuthorization = true; // Authorization 미들웨어 건너뛰기 플래그 설정
@@ -22,10 +22,10 @@ async function apiKeyAuthenticator(req, res, next) {
     return next();
 }
 
-async function jwtAuthenticator(req, res, next) {
+async function jwtAuthenticator(req, res, authUrl, next) {
     if (req.headers['authorization']) {
         try {
-            const verifiedToken = await verifyToken(req);
+            const verifiedToken = await verifyToken(req, authUrl);
 
             if (verifiedToken.type === 'success') {
                 req.userId = verifiedToken.data.userId;
@@ -42,12 +42,12 @@ async function jwtAuthenticator(req, res, next) {
     return next();
 }
 
-async function authenticate(req, res, next) {
-    await apiKeyAuthenticator(req, res, async () => {
+async function authenticate(req, res, authUrl, next) {
+    await apiKeyAuthenticator(req, res, authUrl, async () => {
         if (req.skipAuthorization) {
             return next();
         } else {
-            await jwtAuthenticator(req, res, next);
+            return next()
         }
     });
 }
@@ -70,7 +70,7 @@ async function authorize(req, res, authUrl, next) {
             res.status(500).json({ type: 'system', message: "Internal server error" });
         }
     }else{
-        next();
+        return res.status(401).json({ type: 'client', message: "Unauthorized: Invalid Token" });
     }
 }
 

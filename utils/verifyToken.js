@@ -1,8 +1,8 @@
 const axios = require('axios');
 
-async function verifyToken(req) {
+async function verifyToken(req, authUrl) {
     try {
-        const response = await axios.get('https://api.dev.ahhaohho.com/auth/verifyAccessToken', {
+        const response = await axios.get(authUrl + 'auth/verifyAccessToken', {
             headers: {
                 'Authorization': req.headers['authorization']
             }
