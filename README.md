@@ -41,7 +41,7 @@ const app = express();
 const authUrl = "https://membership.ahhaohho.com/"
 
 const setupRouter = (app) => {
-  app.get('/challenge/getContents', authenticate, authorize(authUrl), getRoute)
+  app.get('/challenge/getContents', authenticate(authUrl), authorize(authUrl), getRoute)
 }
 
 app.listen(3000, () => console.log('서버가 3000번 포트에서 실행 중입니다.'));
