@@ -18,10 +18,10 @@ authenticate와 authorize 함수를 import하여 사용할 수 있습니다:
 const { authenticate, authorize } = require('@ahhaohho/auth');
 
 // 인증 미들웨어 사용 예시
-app.use(authenticate);
+app.use(authenticate('https://auth.url.com'));
 
 // 인가 미들웨어 사용 예시
-app.use(authorize);
+app.use(authorize('https://auth.url.com'));
 ```
 
 ## 주요 기능
