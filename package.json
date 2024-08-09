@@ -21,5 +21,13 @@
   "homepage": "https://github.com/Future-Lab-META/npm-auth#readme",
   "dependencies": {
     "axios": "^1.7.2"
-  }
+  },
+  "files": [
+    "utils",
+    "index.js",
+    "auth.js",
+    "package.json",
+    "package-lock.json",
+    "README.md"
+  ]
 }
