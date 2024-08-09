@@ -52,13 +52,13 @@ async function authenticate(req, res, next) {
     });
 }
 
-async function authorize(req, res, next) {
+async function authorize(req, res, authUrl, next) {
     const { userId, userRole } = req;
 
 
     if (req.headers['authorization']) {
         try {
-            const { data } = await axios.get(`https://api.dev.ahhaohho.com/member/searchForServers?userId=${userId}`);
+            const { data } = await axios.get(authUrl + 'member/searchForServers?userId='+ userId);
 
             if (data.role === userRole) {
                 next();

@@ -38,10 +38,11 @@ const express = require('express');
 const { authenticate, authorize } = require('@ahhaohho/auth');
 
 const app = express();
+const authUrl = "https://membership.ahhaohho.com/"
 
-app.get('/challenge/authTest', authenticate, authorize, (req, res) => {
-  res.send('인증 및 인가 성공');
-});
+const setupRouter = (app) => {
+  app.get('/challenge/getContents', authenticate, authorize(authUrl), getRoute)
+}
 
 app.listen(3000, () => console.log('서버가 3000번 포트에서 실행 중입니다.'));
 ```
